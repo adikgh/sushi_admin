@@ -5,7 +5,7 @@
 
 
 
-    $cashbox = db::query("select * from report_1 where user_id = '$user_id' and paid = 0 and branch_id = '$branch' order by id desc limit 1");
+    $cashbox = db::query("select * from report_1 where paid = 0 and branch_id = '$branch' order by id desc limit 1");
 	if (mysqli_num_rows($cashbox)) {
 		$cashbox_d = mysqli_fetch_assoc($cashbox);
 		$cashbox_id = $cashbox_d['id'];
