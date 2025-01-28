@@ -29,7 +29,48 @@
 ?>
 <? include "../block/header.php"; ?>
 
+
+    <div class="bl_c">
+
+        <div class="">
+            <div class="uc_ui uc_ui69">
+                <? if (!$user_right['branch_id']): ?>
+                    <div class="uc_uin_other">
+                        <select name="status" class="on_sort_branch" data-order-id="<?=$buy_d['id']?>" >
+                            <option data-id="" value="" data-val="1" <?=($branch == 1?'selected':'')?>>Банзай</option>
+                            <option data-id="" value="" data-val="2" <?=($branch == 2?'selected':'')?>>Мастер</option>
+                        </select>
+                    </div>
+                <? endif ?>
+                <!-- <div class="uc_uin_other">
+                    <select name="status" class="on_sort_time" data-order-id="<?=$buy_d['id']?>" >
+                        <option data-id="" value="" data-val="0" <?=(@$time_sort == 0?'selected':'')?>>Бүгін (<?=date('d', strtotime("$date"))?>)</option>
+                        <option data-id="" value="" data-val="-1" <?=(@$time_sort == -1?'selected':'')?>>Кеше (<?=date('d', strtotime("$date -1 day"))?>)</option>
+                        <option data-id="" value="" data-val="-2" <?=(@$time_sort == -2?'selected':'')?>>Алдыңғы күні (<?=date('d', strtotime("$date -2 day"))?>)</option>
+                    </select>
+                </div> -->
+                
+                <!-- <div class="uc_uin_other">
+                    <select name="staff" class="on_sort_staff" data-order-id="<?=$buy_d['id']?>" >
+                        <option data-id="" value="">Барлығы</option>
+                        <option data-id="soboi" <?=(@$_GET['staff'] == 'soboi'?'selected':'')?> value="">Собой</option>
+                        <option data-id="off" <?=(@$_GET['staff'] == 'off'?'selected':'')?> value="">Таңдалмаған</option>
+                        <? $staff = db::query("select * from user_staff where positions_id = 6"); ?>
+                        <? while ($staff_d = mysqli_fetch_assoc($staff)): ?>
+                            <? $staff_user_d = fun::user($staff_d['user_id']); ?>
+                            <option data-id="<?=$staff_d['user_id']?>" <?=(@$_GET['staff'] == $staff_d['user_id']?'selected':'')?> value=""><?=$staff_user_d['name']?></option>
+                        <? endwhile ?>
+                    </select>
+                </div> -->
+            </div>
+        </div>
+
+    </div>
+
+
 	<div class="bl_c">
+
+
 
 			<div class="table4">
 

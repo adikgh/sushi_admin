@@ -131,14 +131,7 @@ $(document).ready(function() {
 	})
 
 
-   // 
-	$('.on_sort_branch').on('change', function () {
-      var val = $(this).children('option:selected').attr('data-val');
-      const url = new URL(window.location);
-      url.searchParams.set('branch', val); 
-      history.pushState(null, null, url);
-      location.reload();
-	})
+
 
 
 
