@@ -73,28 +73,7 @@ $(document).ready(function() {
             order_id: btn.attr('data-order-id'),
          }),
          success: function(data){ 
-            if (data == 'yes') location.reload();
-            console.log(data);
-         },
-         beforeSend: function(){ },
-         error: function(data){ }
-      })
-	})
-
-
-   // 
-	$('.on_stype').on('change', function () {
-		btn = $(this)
-      $.ajax({
-         url: "/orders/get.php?change_type",
-         type: "POST",
-         dataType: "html",
-         data: ({ 
-            id: btn.children('option:selected').attr('data-id'),
-            order_id: btn.attr('data-order-id'),
-         }),
-         success: function(data){ 
-            if (data == 'yes') location.reload();
+            // if (data == 'yes') location.reload();
             console.log(data);
          },
          beforeSend: function(){ },
@@ -109,14 +88,6 @@ $(document).ready(function() {
       var val = $(this).children('option:selected').attr('data-id');
       const url = new URL(window.location);
       url.searchParams.set('status', val); 
-      history.pushState(null, null, url);
-      location.reload();
-	})
-   // 
-	$('.on_sort_time').on('change', function () {
-      var val = $(this).children('option:selected').attr('data-val');
-      const url = new URL(window.location);
-      url.searchParams.set('time', val);
       history.pushState(null, null, url);
       location.reload();
 	})
@@ -154,36 +125,6 @@ $(document).ready(function() {
 	// $('.on_print').on('click', function () {
 
 	// })
-
-
-
-
-
-
-
-   // cashbox_pay
-	$('.on_info').click(function(){
-		$('.on_info_block').addClass('pop_bl_act');
-		$('#html').addClass('ovr_h');
-
-      $.ajax({
-         url: "/orders/info.php",
-         type: "POST",
-         dataType: "html",
-         data: ({ 
-            id: $(this).attr('data-id'),
-         }),
-         success: function(data){
-            $('.osigoi').html(data)
-         },
-         beforeSend: function(){ },
-         error: function(data){ }
-      })
-	})
-	$('.on_info_back').click(function(){
-		$('.on_info_block').removeClass('pop_bl_act');
-		$('#html').removeClass('ovr_h');
-	})
 
 
 

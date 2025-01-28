@@ -1,38 +1,40 @@
-<?php include "config/core.php";
+<? include "config/core.php";
 
 	// sign in code
-	if(isset($_GET['code'])) {
-		$code = strip_tags($_POST['code']);
-		$user_mn = db::query("SELECT * FROM user_management WHERE code = '$code'");
-		if (mysqli_num_rows($user_mn)) {
-			$user_mnd = mysqli_fetch_assoc($user_mn);
-			$id = $user_mnd['user_id'];
-			$user = db::query("SELECT * FROM user WHERE id = '$id'");
-			$user_d = mysqli_fetch_assoc($user);
-			$_SESSION['uph'] = $user_d['phone'];
-			$_SESSION['ups'] = $user_d['password'];
-			echo 'yes';
-		} else echo 'none';
-		exit();
-	}
+	// if(isset($_GET['code'])) {
+	// 	$code = strip_tags($_POST['code']);
+	// 	$user_mn = db::query("SELECT * FROM user_management WHERE code = '$code'");
+	// 	if (mysqli_num_rows($user_mn)) {
+	// 		$user_mnd = mysqli_fetch_assoc($user_mn);
+	// 		$id = $user_mnd['user_id'];
+	// 		$user = db::query("SELECT * FROM user WHERE id = '$id'");
+	// 		$user_d = mysqli_fetch_assoc($user);
+	// 		$_SESSION['uph'] = $user_d['phone'];
+	// 		$_SESSION['ups'] = $user_d['password'];
+	// 		echo 'yes';
+	// 	} else echo 'none';
+	// 	exit();
+	// }
 
 
 	// sign in phone
 	if(isset($_GET['sign'])) {
-		$user_id = strip_tags($_POST['user_id']);
-		$code = strip_tags($_POST['code']);
-		$user = db::query("SELECT * FROM user WHERE id = '$user_id' and `code` = '$code' and `right` = 1");
+		$phone = strip_tags($_POST['phone']);
+		$password = strip_tags($_POST['password']);
+		$user = db::query("SELECT * FROM user WHERE `phone` = '$phone' and `password` = '$password' and `right` = 1");
 		if (mysqli_num_rows($user)) {
 			$user_d = mysqli_fetch_array($user);
-			$_SESSION['upi'] = $user_d['id'];
-			$_SESSION['upc'] = $code;
-			setcookie('upi', $user_d['id'], time() + 3600*24*30*6, '/');
-			setcookie('upc', $code, time() + 3600*24*30*6, '/');
-			echo 'yes';
+			$user_staff = fun::user_staffw($user_d['id']);
+			if ($user_staff['positions_id'] == 3 || $user_staff['positions_id'] == 2 || $user_staff['positions_id'] == 1) {
+				$_SESSION['uph'] = $phone;
+				$_SESSION['ups'] = $password;
+				setcookie('uph', $phone, time() + 3600*24*30*6, '/');
+				setcookie('ups', $password, time() + 3600*24*30*6, '/');
+				echo 'yes';
+			} else echo 'none';
 		} else echo 'none';
 		exit();
 	}
-
 
 
 

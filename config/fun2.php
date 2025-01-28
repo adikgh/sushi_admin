@@ -29,14 +29,6 @@
 
 		
 		// retail_order
-		public static function order_sts($id) {
-			$sql = db::query("select * from retail_orders_status where id = '$id'");
-			return mysqli_fetch_array($sql);
-		}
-
-
-
-		// retail_order
 		public static function retail_returns($id) {
 			$sql = db::query("select * from retail_returns where id = '$id'");
 			return mysqli_fetch_array($sql);
@@ -69,11 +61,7 @@
 
 
 
-		// 
-		public static function report_сourier($id, $uid) {
-			$sql = db::query("select * from report_сourier where report_id = '$id' and сourier_id = '$uid'");
-			if (mysqli_num_rows($sql)) return mysqli_fetch_array($sql); else return 0;
-		}
+
 
 
 

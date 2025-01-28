@@ -44,7 +44,7 @@
 ?>
 <? include "../block/header.php"; ?>
 
-	<div class="">
+	<div class="bl_c">
 
       <!-- a header -->
 		<? include "aheader.php"; ?>

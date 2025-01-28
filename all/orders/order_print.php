@@ -10,8 +10,6 @@
     }
 
 
-    $number = 1;
-
 ?>
 
 
@@ -48,7 +46,7 @@
                 <td colspan="3" align="center"></td>
             </tr>
         <? endif ?>
-        <? if ($cashbox_d['order_type'] == 2): ?>
+        <? if ($cashbox_d['order_status'] == 2): ?>
             <tr class="tr_title">
                 <td colspan="3">СОБОЙ</td>
             </tr>
@@ -61,11 +59,6 @@
         <tr class="tr">
             <td colspan="3"><b>Номер заказ: <?=$cashbox_d['number']?></b></td>
         </tr>
-        <? if ($cashbox_d['additional']): ?>
-            <tr class="tr">
-                <td align="left" сolspan="3"><?=$cashbox_d['additional']?></td>
-            </tr>
-        <? endif ?>
         <tr class="tr">
             <td colspan="3"></td>
         </tr>
@@ -80,14 +73,13 @@
         <? while ($sel_d = mysqli_fetch_assoc($cashboxp)): ?>
             <? $product = product::product($sel_d['product_id'])?>
             <tr class="tr" valign="top">
-                <td align="left"><?=$number?>. <?=$product['name_ru']?></td>
+                <td align="left"><?=$product['name_ru']?></td>
                 <td align="center"><?=$sel_d['quantity']?></td>
                 <td align="right"><?=($sel_d['quantity'] * $sel_d['price'])?></td>
             </tr>
-            <? $number++ ?>
         <? endwhile ?>
             <tr class="tr" valign="top">
-                <td align="left"><?=$number?>. Доставка</td>
+                <td align="left">Доставка</td>
                 <td align="center"></td>
                 <td align="right"><?=$cashbox_d['pay_delivery']?></td>
             </tr>
@@ -106,14 +98,19 @@
         <tr class="tr">
             <td align="left"><b>К ОПЛАТЕ</b></td>
             <td></td>
-            <td align="right"><b><?=$cashbox_d['pay_cash']?></b></td>
+            <td align="right"><b><?=$cashbox_d['total'] - $cashbox_d['pay_qr']?></b></td>
         </tr>
 
+        <!-- <tr style="height:20px">
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr> -->
         <tr class="tr_border">
             <td><br><b>Клиент</b></td>
         </tr>
         <tr class="tr">
-            <td align="left" сolspan="3">Номер: 8<?=$cashbox_d['phone']?></td>
+            <td align="left" сolspan="3">Номер: <?=$cashbox_d['phone']?></td>
         </tr>
         <tr class="tr">
             <td align="left" сolspan="3">Адрес: <?=$cashbox_d['address']?></td>

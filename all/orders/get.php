@@ -76,19 +76,6 @@
       exit();
 	}
 
-   // 
-	if(isset($_GET['change_type'])) {
-		$id = strip_tags($_POST['id']);
-		$order_id = strip_tags($_POST['order_id']);
-
-      if ($id == 2) $upd = db::query("UPDATE `retail_orders` SET total = total - pay_delivery, pay_delivery = 0 WHERE id = '$order_id'");
-      $upd = db::query("UPDATE `retail_orders` SET order_type = '$id' WHERE id = '$order_id'");
-
-      echo 'yes';
-
-      exit();
-	}
-
 
 
 
@@ -119,12 +106,3 @@
 
       exit();
 	}
-
-
-
-
-
-
-
-
-   // on_info

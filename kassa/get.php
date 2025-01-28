@@ -44,11 +44,29 @@
    
    
    // 
-	if(isset($_GET['change_staff'])) {
+	if(isset($_GET['expenses'])) {
 		$id = strip_tags($_POST['id']);
-		$order_id = strip_tags($_POST['order_id']);
+		$user_id = strip_tags($_POST['user_id']);
+		$expenses = strip_tags($_POST['expenses']);
 
-      $upd = db::query("UPDATE `retail_orders` SET сourier_id = '$id' WHERE id = '$order_id'");
+      $cashbox = db::query("select * from report_сourier where сourier_id = '$user_id' and report_id = '$id' order by id desc limit 1");
+      if (mysqli_num_rows($cashbox)) $upd = db::query("UPDATE `report_сourier` SET `expenses` = '$expenses' WHERE сourier_id = '$user_id' and report_id = '$id'");
+      else $ins = db::query("INSERT INTO `report_сourier`(`сourier_id`, `report_id`, `expenses`) VALUES ('$user_id', '$id', '$expenses')");
+
+      echo 'yes';
+
+      exit();
+	}
+   // 
+	if(isset($_GET['cash'])) {
+		$id = strip_tags($_POST['id']);
+		$user_id = strip_tags($_POST['user_id']);
+		$cash = strip_tags($_POST['cash']);
+
+      $cashbox = db::query("select * from report_сourier where сourier_id = '$user_id' and report_id = '$id' order by id desc limit 1");
+      if (mysqli_num_rows($cashbox)) $upd = db::query("UPDATE `report_сourier` SET `cash` = '$cash' WHERE сourier_id = '$user_id' and report_id = '$id'");
+      else $ins = db::query("INSERT INTO `report_сourier`(`сourier_id`, `report_id`, `cash`) VALUES ('$user_id', '$id', '$cash')");
+
       echo 'yes';
 
       exit();

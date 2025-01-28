@@ -14,21 +14,11 @@ $(document).ready(function() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 	// 
 	$('.ub1_lx').on('click', function() {
 		$(this).parent().toggleClass('menu_act');
 	})
+
 
 
 
@@ -1091,59 +1081,25 @@ $(document).ready(function() {
 
 
 	
-	// cashbox_pay
-	$('.loginq_clc').click(function(){
-		$('.loginq_block').addClass('pop_bl_act');
-		$('#html').addClass('ovr_h');
-		$('.btn_sign').attr('data-id', $(this).attr('data-id'))
-	})
-	$('.loginq_back').click(function(){
-		$('.loginq_block').removeClass('pop_bl_act');
-		$('#html').removeClass('ovr_h');
-	})
-
 	// sign in
 	$('.btn_sign').on('click', function() {
-		if ($('.password').attr('data-sel') == 0) mess('Жеке кодыңызды енгізіңіз')
+		if ($('.phone').attr('data-sel') == 0 || $('.password').attr('data-sel') == 0) mess('Жеке кодыңызды енгізіңіз')
 		else {
 			$.ajax({
 				url: "/get.php?sign",
 				type: "POST",
 				dataType: "html",
 				data: ({ 
-					user_id: $('.btn_sign').attr('data-id'),
-					code: $('.code').val(),
+					phone: $('.phone').attr('data-val'),
+					password: $('.password').attr('data-val'),
 				}),
 				beforeSend: function(){ },
 				error: function(data){ console.log(data) },
 				success: function(data){
-					if (data == 'yes') location.href = '/cashbox/';
-					else mess('Жеке кодыңыз қате')
+					if (data == 'yes') location.href = '/orders/';
+					else mess('Жеке пароліңіз қате')
 				},
 			})
-		}
-	});
-	// sign in
-	$('.code').on('input', function() {
-		if ($('.code').val().length == 4) {
-			if ($('.password').attr('data-sel') == 0) mess('Жеке кодыңызды енгізіңіз')
-			else {
-				$.ajax({
-					url: "/get.php?sign",
-					type: "POST",
-					dataType: "html",
-					data: ({ 
-						user_id: $('.btn_sign').attr('data-id'),
-						code: $('.code').val(),
-					}),
-					beforeSend: function(){ },
-					error: function(data){ console.log(data) },
-					success: function(data){
-						if (data == 'yes') location.href = '/cashbox/';
-						else mess('Жеке кодыңыз қате')
-					},
-				})
-			}
 		}
 	});
 
