@@ -19,7 +19,7 @@
 		<div class="bl_c">
 			<div class="usign_c">
 
-				<div class="usign_head"><h3 class="usign_h">Админ панел</h3></div>
+				<div class="usign_head"><h3 class="usign_h">Админ</h3></div>
 				<div class="usign_cn">
 					<div class="form_im form_im_ph">
 						<i class="far fa-mobile form_icon"></i>
