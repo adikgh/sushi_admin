@@ -216,13 +216,13 @@
 
 
 .or_status{
-   width: calc((100% - 44px - 30px) / 2);
+   width: calc(100% - 44px - 30px);
+   height: 44px;
    border-radius: 8px;
-}
-.or_status select{
-   width: 100%;
-   /* color: var(--wh); */
-   background: none;
+   display: flex;
+   align-items: center;
+   padding: 0  0 0 15px;
+   color: var(--wh);
    font-size: 16px;
    font-weight: 700;
    border-radius: 8px;

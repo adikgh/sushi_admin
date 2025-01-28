@@ -61,30 +61,23 @@
 								<div class="uc_uil2" >
 									<div class="uc_uil2_top">
 										<div class="uc_uil2_nmb"><?=$buy_d['number']?></div>
+										<div class="or_status" style="background-color:<?=$order_sts['clr']?>;"><?=$order_sts['name_kz']?></div>
+									</div>
+									<br>
+									<div class="uc_uil2_date">
+										<div class=""><?=date("d-m-Y", strtotime($buy_d['ins_dt']))?> ⌛ <?=date("H:i", strtotime($buy_d['ins_dt']))?> <?=($buy_d['preorder_dt']?'| 🔴':'')?>  <?=($buy_d['preorder_dt']?$buy_d['preorder_dt']:'')?></div>
+									</div>
+									<div class="uc_uil2_raz">
 										<div class="uc_uil2_date">
 											<div class="uc_uil2_date1">
 												<? if ($buy_d['сourier_id']): $сourier_d = fun::user($buy_d['сourier_id']); ?>
 													<?=$сourier_d['name']?> <br> <span class="fr_phone"><?=$сourier_d['phone']?></span>
 												<? else: ?>
-													<select name="" id="" class="on_stype" data-order-id="<?=$buy_d['id']?>" >
-														<option value="" <?=($buy_d['order_type']==1?'selected':'')?> data-id="1">Курьер</option>
-														<option value="" <?=($buy_d['order_type']==2?'selected':'')?> data-id="2">Собой</option>
-													</select>
+													<? if ($buy_d['order_type']==1): ?><i class="far fa-car"></i> Курьер
+													<? else: ?><i class="far fa-person-carry"></i> Собой<? endif ?>
 												<? endif ?>
 											</div>
 										</div>
-										<div class="or_status" style="background-color:<?=$order_sts['clr']?>;"> <?//=$order_sts['name_kz']?>
-											<select name="" id="" class="on_status" data-order-id="<?=$buy_d['id']?>" >
-												<? $orders_status = db::query("select * from retail_orders_status"); ?>
-												<? while ($orders_status_d = mysqli_fetch_assoc($orders_status)): ?>
-													<option data-id="<?=$orders_status_d['id']?>" <?=($order_sts['id'] == $orders_status_d['id']?'selected':'')?> value="" ><?=$orders_status_d['name_kz']?></option>
-												<? endwhile ?>
-											</select>
-										</div>
-									</div>
-									<br>
-									<div class="uc_uil2_date">
-										<div class=""><?=date("d-m-Y", strtotime($buy_d['ins_dt']))?> ⌛ <?=date("H:i", strtotime($buy_d['ins_dt']))?> <?=($buy_d['preorder_dt']?'| 🔴':'')?>  <?=($buy_d['preorder_dt']?$buy_d['preorder_dt']:'')?></div>
 									</div>
 									<div class="uc_uil2_raz">
 										<div class="uc_uil2_mi">
@@ -149,12 +142,6 @@
 											</div>
 										</div>
 									</div>
-									<div class="uc_uil2_raz">
-										<div class="uc_uil2_mib">
-											<a class="btn btn_cl on_ubd" data-id="<?=$buy_d['id']?>" href="/cashbox/?id=<?=$buy_d['id']?>&type=ubd">Изменить</a>
-											<div class="btn  on_print" data-id="<?=$buy_d['id']?>">Печать</div>
-										</div>
-									</div>
 								</div>
 							</div>
 
@@ -179,11 +166,22 @@
 
 			<div class="">
 				<div class="uc_ui uc_ui69">
+					<? if (!$user_right['branch_id']): ?>
+						<div class="uc_uin_other">
+							<select name="status" class="on_sort_branch" data-order-id="<?=$buy_d['id']?>" >
+								<option data-id="" value="" data-val="1" <?=($branch == 1?'selected':'')?>>Банзай</option>
+								<option data-id="" value="" data-val="2" <?=($branch == 2?'selected':'')?>>Мастер</option>
+							</select>
+						</div>
+					<? endif ?>
+
+
+
 					<div class="uc_uin_other">
 						<select name="status" class="on_sort_time" data-order-id="<?=$buy_d['id']?>" >
 							<option data-id="" value="" data-val="0" <?=(@$time_sort == 0?'selected':'')?>>Бүгін (<?=date('d', strtotime("$date"))?>)</option>
-							<option data-id="" value="" data-val="-1" <?=(@$time_sort == -1?'selected':'')?>>Кеше (<?=date('d', strtotime("$date -1 day"))?>)</option>
-							<option data-id="" value="" data-val="-2" <?=(@$time_sort == -2?'selected':'')?>>Алдыңғы күні (<?=date('d', strtotime("$date -2 day"))?>)</option>
+							<option data-id="" value="" data-val="-2" <?=(@$time_sort == -2?'selected':'')?>>Кеше (<?=date('d', strtotime("$date -1 day"))?>)</option>
+							<option data-id="" value="" data-val="-3" <?=(@$time_sort == -3?'selected':'')?>>Алдыңғы күні (<?=date('d', strtotime("$date -2 day"))?>)</option>
 						</select>
 					</div>
 					<div class="uc_uin_other">
