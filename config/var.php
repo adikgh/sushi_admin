@@ -3,7 +3,7 @@
 
 
     // setting
-    $ver = 1.00015;
+    $ver = 1.00016;
 
     // 
     $site_set = [
@@ -37,17 +37,17 @@
     $time = date("H:i:s", time());
     $datetime = date('Y-m-d H:i:s', time());
 
-    //  if ($time > "00:00:00" && $time < "06:00:00") {
-    //    $start_cdate = date('Y-m-d 06:00:00', strtotime("$date -1 day"));
-    //    $end_cdate = date("Y-m-d 06:00:00", strtotime("$start_cdate +1 day"));
-    //  } else {
-    //    $start_cdate = date('Y-m-d 06:00:00');
-    //    $end_cdate = date("Y-m-d 06:00:00", strtotime("$start_cdate +1 day"));
-    //  }
-
-    // 
-    $start_cdate = date('Y-m-d 06:00:00', strtotime("$date -1 day"));
-    $end_cdate = date("Y-m-d 06:00:00", strtotime("$start_cdate +1 day"));
+    if ($time > "00:00:00" && $time < "06:00:00") {
+        $start_cdate = date('Y-m-d 06:00:00', strtotime("$date -1 day"));
+        $end_cdate = date('Y-m-d 06:00:00');
+    } else {
+        $start_cdate = date('Y-m-d 06:00:00');
+        $end_cdate = date("Y-m-d 06:00:00", strtotime("$start_cdate +1 day"));
+    }
+  
+    //  $start_cdate = date('Y-m-d 06:00:00', strtotime("$date -1 day"));
+    //  $end_cdate = date("Y-m-d 06:00:00", strtotime("$start_cdate +1 day"));
+  
 
 
     // url

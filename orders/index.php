@@ -174,14 +174,11 @@
 							</select>
 						</div>
 					<? endif ?>
-
-
-
 					<div class="uc_uin_other">
 						<select name="status" class="on_sort_time" data-order-id="<?=$buy_d['id']?>" >
 							<option data-id="" value="" data-val="0" <?=(@$time_sort == 0?'selected':'')?>>Бүгін (<?=date('d', strtotime("$date"))?>)</option>
-							<option data-id="" value="" data-val="-2" <?=(@$time_sort == -2?'selected':'')?>>Кеше (<?=date('d', strtotime("$date -1 day"))?>)</option>
-							<option data-id="" value="" data-val="-3" <?=(@$time_sort == -3?'selected':'')?>>Алдыңғы күні (<?=date('d', strtotime("$date -2 day"))?>)</option>
+							<option data-id="" value="" data-val="-1" <?=(@$time_sort == -1?'selected':'')?>>Кеше (<?=date('d', strtotime("$date -1 day"))?>)</option>
+							<option data-id="" value="" data-val="-2" <?=(@$time_sort == -2?'selected':'')?>>Алдыңғы күні (<?=date('d', strtotime("$date -2 day"))?>)</option>
 						</select>
 					</div>
 					<div class="uc_uin_other">
