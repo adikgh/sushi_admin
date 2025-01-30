@@ -17,11 +17,6 @@
     
 
 
-
-
-    
-
-
 	// site setting
 	$menu_name = 'kassa';
 	$css = ['kassa'];
