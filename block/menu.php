@@ -95,6 +95,7 @@
 				<span>Заказдар</span>
 			</a>
 			<a class="pmenu_i <?=($menu_name=='kassa'?'pmenu_i_act':'')?>" href="/kassa/ph.php">
+			<!-- <a class="pmenu_i <?=($menu_name=='kassa'?'pmenu_i_act':'')?>" href="/kassa/ph.php"> -->
 				<i class="far fa-landmark"></i>
 				<span>Касса</span>
 			</a>

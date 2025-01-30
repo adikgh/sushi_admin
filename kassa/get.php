@@ -71,6 +71,20 @@
 
       exit();
 	}
+   // 
+	if(isset($_GET['kaspi'])) {
+		$id = strip_tags($_POST['id']);
+		$user_id = strip_tags($_POST['user_id']);
+		$kaspi = strip_tags($_POST['kaspi']);
+
+      $cashbox = db::query("select * from report_сourier where сourier_id = '$user_id' and report_id = '$id' order by id desc limit 1");
+      if (mysqli_num_rows($cashbox)) $upd = db::query("UPDATE `report_сourier` SET `kaspi` = '$kaspi' WHERE сourier_id = '$user_id' and report_id = '$id'");
+      else $ins = db::query("INSERT INTO `report_сourier`(`сourier_id`, `report_id`, `kaspi`) VALUES ('$user_id', '$id', '$kaspi')");
+
+      echo 'yes';
+
+      exit();
+	}
 
    // 
 	if(isset($_GET['delete'])) {

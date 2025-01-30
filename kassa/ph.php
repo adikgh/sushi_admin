@@ -73,7 +73,6 @@
 
     </div>
 
-
     <div class="flex_clm_rev">
         <div class="bl_c">
             <div class="uc_u">
@@ -149,15 +148,21 @@
                                 </div>
                                 <div class="uc_uil2_mi">
                                     <div class="uc_uil2_mi1">Расходы:</div>
-                                    <div class="uc_uil2_mi2 fr_price"></div>
+                                    <div class="uc_uil2_mi2 fr_price"><?=@$report_сourier_d['expenses']?></div>
                                 </div>
                                 <div class="uc_uil2_mi">
                                     <div class="uc_uil2_mi1">Наличный:</div>
-                                    <div class="uc_uil2_mi2 fr_price"></div>
+                                    <div class="uc_uil2_mi2 fr_price"><?=@$report_сourier_d['cash']?></div>
                                 </div>
                                 <div class="uc_uil2_mi">
                                     <div class="uc_uil2_mi1">Каспи:</div>
-                                    <div class="uc_uil2_mi2 fr_price"></div>
+                                    <div class="uc_uil2_mi2 fr_price"><?=@$report_сourier_d['kaspi']?></div>
+                                </div>
+                            </div>
+                            <div class="uc_uil2_raz">
+                                <div class="uc_uil2_mib">
+                                    <div class="btn btn_phone read_one" data-id="<?=$cashbox_id?>" data-user-id="<?=$staff_id?>">Жазу</div>
+                                    <div class="btn btn_whatsapp">Тапсырды</div>
                                 </div>
                             </div>
                         </div>
@@ -221,3 +226,44 @@
     </div>
 
 <? include "../block/footer.php"; ?>
+
+    <!--  -->
+	<div class="pop_bl pop_bl2 read_block">
+		<div class="pop_bl_a read_back"></div>
+		<div class="pop_bl_c">
+			<div class="head_c">
+				<h4>Сақтау</h4>
+				<div class="btn btn_dd read_back"><i class="fal fa-times"></i></div>
+			</div>
+			<div class="pop_bl_cl">
+				<div class="form_c">
+
+                    <div class="form_im">
+                        <div class="form_span">Расход:</div>
+                        <input type="tel" class="form_txt fr_price btype_rask" placeholder="0" value="" data-val="">
+                        <i class="fal fa-tenge form_icon"></i>
+                    </div>
+
+                    <br><br>
+
+                    <div class="">
+                        <div class="form_im">
+                            <div class="form_span">Наличный:</div>
+                            <input type="tel" class="form_txt fr_price btype_cash" placeholder="0" value="" data-val="">
+                            <i class="fal fa-tenge form_icon"></i>
+                        </div>
+                        <div class="form_im">
+                            <div class="form_span">Каспи:</div>
+                            <input type="tel" class="form_txt fr_price btype_kaspi" placeholder="0" value="" data-val="">
+                            <i class="fal fa-tenge form_icon"></i>
+                        </div>
+                    </div>
+
+					<div class="form_im">
+						<div class="btn read_pay2" data-id="" data-user-id="">Сақтау</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
