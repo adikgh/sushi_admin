@@ -82,7 +82,7 @@
 
 
 	// site setting
-	$menu_name = 'orders';
+	$menu_name = 'orders_all';
 	$pod_menu_name = 'main';
 	$css = ['orders2'];
 	$js = ['orders'];
@@ -92,13 +92,13 @@
 	<div class="flex_clm_rev">
 		<div class="bl_c">
 
-			<div class="">
-				<div class="btn_sel btn_sel2">
-					<div class="btn cashbox_pay">Новый заказ</div>
+			<!-- <div class=""> -->
+				<!-- <div class="btn_sel btn_sel2"> -->
+					<!-- <div class="btn cashbox_pay">Новый заказ</div> -->
 					<!-- <a class="<?=($type!='return'?'btn_sel_act':'')?>" href="?type=main" >Продажи</a> -->
 					<!-- <a class="<?=($type=='return'?'btn_sel_act':'')?>" href="?type=return">Возврат</a> -->
-				</div>
-			</div>
+				<!-- </div> -->
+			<!-- </div> -->
 
 			<br>
 

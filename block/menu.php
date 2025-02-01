@@ -16,6 +16,10 @@
 						<div class="umenu_cin"><i class="fal fa-list-ol"></i></div>
 						<div class="umenu_cih">Тапсырыстар</div>
 					</a>
+					<a class="umenu_ci <?=($menu_name=='orders_all'?'menu_ci_act':'')?>" href="/orders/all.php" data-title="Тапсырыстар 2">
+						<div class="umenu_cin"><i class="fal fa-list-ol"></i></div>
+						<div class="umenu_cih">Тапсырыстар 2</div>
+					</a>
 					<a class="umenu_ci <?=($menu_name=='kassa'?'menu_ci_act':'')?>" href="/kassa/" data-title="Касса">
 						<div class="umenu_cin"><i class="fal fa-cash-register"></i></div>
 						<div class="umenu_cih">Касса</div>
