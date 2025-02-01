@@ -100,6 +100,15 @@
 				<!-- </div> -->
 			<!-- </div> -->
 
+			<? if (!$user_right['branch_id']): ?>
+                <div class="uc_uin_other">
+					<select name="status" class="on_sort_branch" data-order-id="<?=$buy_d['id']?>" >
+						<option data-id="" value="" data-val="1" <?=($branch == 1?'selected':'')?>>Банзай</option>
+						<option data-id="" value="" data-val="2" <?=($branch == 2?'selected':'')?>>Мастер</option>
+					</select>
+				</div>
+			<? endif ?>
+
 			<br>
 
 			<div class="uc_u new_all_up">
