@@ -4,6 +4,7 @@ tr{
 td{
     padding: 10px;
     border: 1px solid var(--gr5);
+    min-width: 100px;
 }
 
 .form_txt{
@@ -21,4 +22,11 @@ td{
 }
 table{
     border: 1px solid var(--gr);
+}
+
+@media(max-width:500px){
+    .table4{
+        overflow-y: auto;
+        display: block;
+    }
 }

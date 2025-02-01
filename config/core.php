@@ -59,6 +59,14 @@
    $user_id = @$user['id'];
    $user_right = fun::user_staffw($user_id);
 
+   // company
+   $company = 1;
+   if (@$user_right['company_id']) $company = $user_right['company_id'];
+   else {
+      if (isset($_GET['company'])) if ($_GET['company'] == 1 || $_GET['company'] == 2) $_SESSION['company'] = $_GET['company'];
+      if (isset($_SESSION['company'])) $branch = $_SESSION['company'];
+   }
+
    // branch
    $branch = 1; 
    if (@$user_right['branch_id']) $branch = $user_right['branch_id'];
