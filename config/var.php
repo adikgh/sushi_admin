@@ -3,7 +3,7 @@
 
 
     // setting
-    $ver = 1.0002;
+    $ver = 1.0003;
 
     // 
     $site_set = [

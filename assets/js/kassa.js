@@ -3,19 +3,20 @@ $(document).ready(function() {
 
     $('html').on('input', '.btype_rask', function () {
         btn = $(this)
-        // btype_start = Number(btn.parent().siblings('.btype_start').attr('data-start'))
-        // $(this).parent().siblings('.btype_kaspi').html((btype_start - sum) + ' тг')
-        // btn.parent().siblings('.btype_start').attr('data-rask', sum)
+        btype_start = Number(btn.parent().siblings('.btype_start').attr('data-start'))
+        btype_cash = Number(btn.parent().siblings('td').children('.btype_cash').attr('data-val'))
+        btype_rask = Number(btn.attr('data-val'))
 
-        sum = Number(btn.attr('data-val'))
+        $(this).parent().siblings('.btype_kaspi').html((btype_start - btype_cash - btype_rask) + ' тг')
+
         $.ajax({
             url: "/kassa/get.php?expenses",
             type: "POST",
             dataType: "html",
             data: ({ 
-                id: $('.read_pay2').attr('data-id'),
-                user_id: $('.read_pay2').attr('data-user-id'),
-                expenses: sum,
+                id: btn.attr('data-id'),
+                user_id: btn.attr('data-user-id'),
+                expenses: btype_rask,
             }),
             success: function(data){ 
                 // if (data == 'yes') location.reload();
@@ -28,21 +29,20 @@ $(document).ready(function() {
     
     $('html').on('input', '.btype_cash', function () {
         btn = $(this)
-        // btype_start = Number(btn.parent().siblings('.btype_start').attr('data-start'))
-        // btype_rask = Number(btn.parent().siblings('.btype_start').attr('data-rask'))
+        btype_start = Number(btn.parent().siblings('.btype_start').attr('data-start'))
+        btype_rask = Number(btn.parent().siblings('td').children('.btype_rask').attr('data-val'))
+        btype_cash = Number(btn.attr('data-val'))
 
-        // $(this).parent().siblings('.btype_kaspi').html((btype_start - sum - btype_rask) + ' тг')
-
-        sum = Number(btn.attr('data-val'))
+        $(this).parent().siblings('.btype_kaspi').html((btype_start - btype_cash - btype_rask) + ' тг')
 
         $.ajax({
             url: "/kassa/get.php?cash",
             type: "POST",
             dataType: "html",
             data: ({ 
-                id: $('.read_pay2').attr('data-id'),
-                user_id: $('.read_pay2').attr('data-user-id'),
-                cash: sum,
+                id: btn.attr('data-id'),
+                user_id: btn.attr('data-user-id'),
+                cash: btype_cash,
             }),
             success: function(data){ 
                 // if (data == 'yes') location.reload();
@@ -55,11 +55,7 @@ $(document).ready(function() {
 
 
 
-
-
-
-
-    // cashbox_pay
+        // cashbox_pay
 	$('.read_one').click(function(){
 		$('.read_block').addClass('pop_bl_act');
 		$('#html').addClass('ovr_h');

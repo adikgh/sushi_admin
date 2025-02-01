@@ -5,7 +5,7 @@
 
 
 
-    $cashbox = db::query("select * from report_1 where paid = 0 and branch_id = '$branch' order by id desc limit 1");
+    $cashbox = db::query("select * from report_1 where user_id = '$user_id' and paid = 0 and branch_id = '$branch' order by id desc limit 1");
 	if (mysqli_num_rows($cashbox)) {
 		$cashbox_d = mysqli_fetch_assoc($cashbox);
 		$cashbox_id = $cashbox_d['id'];
@@ -17,50 +17,17 @@
     
 
 
+
+
+    
+
+
 	// site setting
-	$menu_name = 'kassa';
+	$menu_name = 'main';
 	$css = ['kassa'];
 	$js = ['kassa'];
 ?>
 <? include "../block/header.php"; ?>
-
-
-    <div class="bl_c">
-
-        <div class="">
-            <div class="uc_ui uc_ui69">
-                <? if (!$user_right['branch_id']): ?>
-                    <div class="uc_uin_other">
-                        <select name="status" class="on_sort_branch" data-order-id="<?=$buy_d['id']?>" >
-                            <option data-id="" value="" data-val="1" <?=($branch == 1?'selected':'')?>>Банзай</option>
-                            <option data-id="" value="" data-val="2" <?=($branch == 2?'selected':'')?>>Мастер</option>
-                        </select>
-                    </div>
-                <? endif ?>
-                <!-- <div class="uc_uin_other">
-                    <select name="status" class="on_sort_time" data-order-id="<?=$buy_d['id']?>" >
-                        <option data-id="" value="" data-val="0" <?=(@$time_sort == 0?'selected':'')?>>Бүгін (<?=date('d', strtotime("$date"))?>)</option>
-                        <option data-id="" value="" data-val="-1" <?=(@$time_sort == -1?'selected':'')?>>Кеше (<?=date('d', strtotime("$date -1 day"))?>)</option>
-                        <option data-id="" value="" data-val="-2" <?=(@$time_sort == -2?'selected':'')?>>Алдыңғы күні (<?=date('d', strtotime("$date -2 day"))?>)</option>
-                    </select>
-                </div> -->
-                
-                <!-- <div class="uc_uin_other">
-                    <select name="staff" class="on_sort_staff" data-order-id="<?=$buy_d['id']?>" >
-                        <option data-id="" value="">Барлығы</option>
-                        <option data-id="soboi" <?=(@$_GET['staff'] == 'soboi'?'selected':'')?> value="">Собой</option>
-                        <option data-id="off" <?=(@$_GET['staff'] == 'off'?'selected':'')?> value="">Таңдалмаған</option>
-                        <? $staff = db::query("select * from user_staff where positions_id = 6"); ?>
-                        <? while ($staff_d = mysqli_fetch_assoc($staff)): ?>
-                            <? $staff_user_d = fun::user($staff_d['user_id']); ?>
-                            <option data-id="<?=$staff_d['user_id']?>" <?=(@$_GET['staff'] == $staff_d['user_id']?'selected':'')?> value=""><?=$staff_user_d['name']?></option>
-                        <? endwhile ?>
-                    </select>
-                </div> -->
-            </div>
-        </div>
-
-    </div>
 
 	<div class="bl_c">
 
@@ -116,10 +83,10 @@
                                 <td class="fr_price"><?=$allorder['pay_delivery']?></td>
                                 <td class="fr_price btype_start" data-rask="0" data-start="<?=$allorder['pay_cash'] - $allorder['pay_delivery']?>"><?=$allorder['pay_cash'] - $allorder['pay_delivery']?></td>
                                 <td class="">
-							        <input type="tel" data-id="<?=$cashbox_id?>" data-user-id="<?=$staff_id?>" class="form_txt fr_price btype_rask" placeholder="0" data-val="" value="<?=@$report_сourier_d['expenses']?>">
+							        <input type="tel" data-id="<?=$cashbox_id?>" data-user-id="<?=$staff_id?>" class="form_txt fr_price btype_rask" placeholder="0" data-val="<?=(@$report_сourier_d['expenses']?$report_сourier_d['expenses']:0)?>" value="<?=@$report_сourier_d['expenses']?>">
                                 </td>
                                 <td class="">
-							        <input type="tel" data-id="<?=$cashbox_id?>" data-user-id="<?=$staff_id?>" class="form_txt fr_price btype_cash" placeholder="0" data-val="0" value="<?=@$report_сourier_d['cash']?>">
+							        <input type="tel" data-id="<?=$cashbox_id?>" data-user-id="<?=$staff_id?>" class="form_txt fr_price btype_cash" placeholder="0" data-val="<?=(@$report_сourier_d['cash']?$report_сourier_d['cash']:0)?>" value="<?=@$report_сourier_d['cash']?>">
                                 </td>
                                 <td class="fr_price btype_kaspi"><?=$allorder['pay_cash']- $allorder['pay_delivery'] - @$report_сourier_d['expenses'] - @$report_сourier_d['cash']?></td>
                                 <!-- <td class="fr_price btype_kaspi"><div class="btn btn_dd_cm"><i class="far fa-check-circle"></i></div></td> -->
